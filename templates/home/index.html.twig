@@ -6,17 +6,18 @@
 {% block body %}
 	<!-- New member form -->
 	<h2>Ajouter un(e) Argonaute</h2>
-	<form class="new-member-form">
-		<label for="name">Nom de l&apos;Argonaute</label>
-		<input id="name" name="name" type="text" placeholder="Charalampos"/>
-		<button type="submit">Envoyer</button>
-	</form>
+	{{ form_start(form,  {'attr': {'class': 'new-member-form'}}) }}
+	{{form_label(form.name) }}
+	{{form_widget(form.name)}}
+	<button type="submit">Envoyer</button>
+	{{ form_end(form) }}
 
 	<!-- Member list -->
 	<h2>Membres de l'équipage</h2>
 	<section class="member-list">
-		<div class="member-item">Eleftheria</div>
-		<div class="member-item">Gennadios</div>
-		<div class="member-item">Lysimachos</div>
+
+		{% for argonaute in argonautes %}
+			<div class="member-item">{{ argonaute.name }}</div>
+		{% endfor %}
 	</section>
 {% endblock %}
